@@ -11,16 +11,16 @@ NoteKeeper is a user-friendly web application designed for efficient note-taking
 - **Responsive Design:** Optimized for various devices to ensure a seamless user experience.
 
 ## 🛠️ Technologies Used
-- **React** for the front-end
-- **Firebase** for cloud storage and authentication
-- **JavaScript** for interactivity
+- **React** for the front-end.
+- **Firebase** for cloud storage and authentication.
+- **JavaScript** for interactivity.
 
 ## 🚧 Getting Started
 To set up the project locally, follow these steps:
 
 1. Clone the repository:bash
 
-   git clone <https://github.com/ViglianoG/NoteKeeper>
+   git clone <github.com/ViglianoG/NoteKeeper>
 
 2. Navigate to the project directory:
 
