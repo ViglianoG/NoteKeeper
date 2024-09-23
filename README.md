@@ -20,7 +20,7 @@ To set up the project locally, follow these steps:
 
 1. Clone the repository:
 
-   git clone [github.com/ViglianoG/NoteKeeper](https://github.com/ViglianoG/NoteKeeper.git)
+   git clone <https://github.com/ViglianoG/NoteKeeper.git>
 
 2. Navigate to the project directory:
 
