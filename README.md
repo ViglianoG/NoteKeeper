@@ -29,9 +29,10 @@ To set up the project locally, follow these steps:
 3. Install dependencies:
 
     npm install
+
 4. Start the application:
 
-    npm start
+    npm run dev
 
 ## 📫 Contributing
 We welcome contributions! If you'd like to help improve NoteKeeper, please fork the repository and submit a pull request.

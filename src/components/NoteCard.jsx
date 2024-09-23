@@ -1,10 +1,13 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Trash from "../icons/Trash.jsx";
 
 const NoteCard = ({ note }) => {
   const body = JSON.parse(note.body);
-  let position = JSON.parse(note.position);
+  const [position, setPosition] = useState(JSON.parse(note.position));
   const colors = JSON.parse(note.colors);
+
+  let mouseStartPosition = { x: 0, y: 0 };
+  const cardRef = useRef(null);
 
   const textAreaRef = useRef(null);
 
@@ -14,8 +17,36 @@ const NoteCard = ({ note }) => {
 
   const autoGrow = (textAreaRef) => {
     const { current } = textAreaRef;
-    current.style.height = auto;
+    current.style.height = "auto";
     current.style.height = current.scrollHeight + "px";
+  };
+
+  const mouseDown = (e) => {
+    mouseStartPosition.x = e.clientX;
+    mouseStartPosition.y = e.clientY;
+
+    document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
+  };
+
+  const mouseMove = (e) => {
+    const mouseMoveDir = {
+      x: mouseStartPosition.x - e.clientX,
+      y: mouseStartPosition.y - e.clientY,
+    };
+
+    mouseStartPosition.x = e.clientX;
+    mouseStartPosition.y = e.clientY;
+
+    setPosition({
+      x: cardRef.current.offsetLeft - mouseMoveDir.x,
+      y: cardRef.current.offsetTop - mouseMoveDir.y,
+    });
+  };
+
+  const mouseUp = () => {
+    document.removeEventListener("mousemove", mouseMove);
+    document.removeEventListener("mouseup", mouseUp);
   };
 
   return (
@@ -26,6 +57,8 @@ const NoteCard = ({ note }) => {
         left: `${position.x}px`,
         top: `${position.y}px`,
       }}
+      ref={cardRef}
+      onMouseDown={mouseDown}
     >
       <div
         className="card-header"
@@ -39,6 +72,9 @@ const NoteCard = ({ note }) => {
           ref={textAreaRef}
           style={{ color: colors.colorText }}
           defaultValue={body}
+          onInput={() => {
+            autoGrow(textAreaRef);
+          }}
         ></textarea>
       </div>
     </div>
