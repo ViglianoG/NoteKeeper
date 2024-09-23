@@ -18,9 +18,9 @@ NoteKeeper is a user-friendly web application designed for efficient note-taking
 ## 🚧 Getting Started
 To set up the project locally, follow these steps:
 
-1. Clone the repository:bash
+1. Clone the repository:
 
-   git clone <github.com/ViglianoG/NoteKeeper>
+   git clone [github.com/ViglianoG/NoteKeeper](https://github.com/ViglianoG/NoteKeeper.git)
 
 2. Navigate to the project directory:
 
