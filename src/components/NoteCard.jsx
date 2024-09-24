@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import Trash from "../icons/Trash.jsx";
-import { setNewOffSet, autoGrow } from "../utils.js";
+import { setNewOffSet, autoGrow, setZIndex } from "../utils.js";
 
 const NoteCard = ({ note }) => {
   const body = JSON.parse(note.body);
@@ -17,6 +17,8 @@ const NoteCard = ({ note }) => {
   }, []);
 
   const mouseDown = (e) => {
+    setZIndex(cardRef.current);
+
     mouseStartPosition.x = e.clientX;
     mouseStartPosition.y = e.clientY;
 
@@ -67,6 +69,9 @@ const NoteCard = ({ note }) => {
           defaultValue={body}
           onInput={() => {
             autoGrow(textAreaRef);
+          }}
+          onFocus={() => {
+            setZIndex(cardRef.current);
           }}
         ></textarea>
       </div>
