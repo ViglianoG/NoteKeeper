@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import NoteCard from "../components/NoteCard.jsx";
 import { databases } from "../appwrite/config.js";
+import { db } from "../appwrite/databases.js";
 
 const NotesPage = () => {
   const [notes, setNotes] = useState([]);
@@ -10,10 +11,8 @@ const NotesPage = () => {
   }, []);
 
   const init = async () => {
-    const response = await databases.listDocuments(
-      import.meta.env.VITE_DATABASE_ID,
-      import.meta.env.VITE_COLLECTION_NOTES_ID
-    );
+    const response = await db.notes.list();
+
     setNotes(response.documents);
   };
 
