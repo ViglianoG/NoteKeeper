@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
-import Trash from "../icons/Trash.jsx";
 import { setNewOffSet, autoGrow, setZIndex, bodyParser } from "../utils.js";
 import { db } from "../appwrite/databases.js";
 import Spinner from "../icons/Spinner.jsx";
+import DeleteButton from "./DeleteButton.jsx";
 
-const NoteCard = ({ note }) => {
+const NoteCard = ({ note, setNotes }) => {
   const body = bodyParser(note.body);
   const [position, setPosition] = useState(JSON.parse(note.position));
   const colors = JSON.parse(note.colors);
@@ -91,7 +91,7 @@ const NoteCard = ({ note }) => {
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
-        <Trash />
+        <DeleteButton noteId={note.$id} setNotes={setNotes} />
 
         {saving && (
           <div className="card-saving">
