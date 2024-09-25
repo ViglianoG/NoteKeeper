@@ -9,6 +9,7 @@ const NoteCard = ({ note }) => {
   const colors = JSON.parse(note.colors);
 
   let mouseStartPosition = { x: 0, y: 0 };
+
   const cardRef = useRef(null);
 
   const textAreaRef = useRef(null);
@@ -56,6 +57,22 @@ const NoteCard = ({ note }) => {
     } catch (error) {
       console.error(error);
     }
+
+    setSaving(false);
+  };
+
+  const [saving, setSaving] = useState(false);
+  const keyUpTimer = useRef(null);
+  const handleKeyUp = async () => {
+    setSaving(true);
+
+    if (keyUpTimer.current) {
+      clearTimeout(keyUpTimer.current);
+    }
+
+    keyUpTimer.current = setTimeout(() => {
+      saveData("body", textAreaRef.current.value);
+    }, 2000);
   };
 
   return (
@@ -73,7 +90,14 @@ const NoteCard = ({ note }) => {
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
+        
         <Trash />
+
+        {saving && (
+          <div className="card-saving">
+            <span style={{ color: colors.colorText }}>Saving...</span>
+          </div>
+        )}
       </div>
 
       <div className="card-body">
@@ -87,6 +111,7 @@ const NoteCard = ({ note }) => {
           onFocus={() => {
             setZIndex(cardRef.current);
           }}
+          onKeyUp={handleKeyUp}
         ></textarea>
       </div>
     </div>
