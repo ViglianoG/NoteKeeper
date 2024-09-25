@@ -20,15 +20,17 @@ const NoteCard = ({ note, setNotes }) => {
   }, []);
 
   const mouseDown = (e) => {
-    setZIndex(cardRef.current);
+    if (e.target.className === "card-header") {
+      setZIndex(cardRef.current);
 
-    mouseStartPosition.x = e.clientX;
-    mouseStartPosition.y = e.clientY;
+      mouseStartPosition.x = e.clientX;
+      mouseStartPosition.y = e.clientY;
 
-    document.addEventListener("mousemove", mouseMove);
-    document.addEventListener("mouseup", mouseUp);
+      document.addEventListener("mousemove", mouseMove);
+      document.addEventListener("mouseup", mouseUp);
+    }
   };
-
+  
   const mouseMove = (e) => {
     const mouseMoveDir = {
       x: mouseStartPosition.x - e.clientX,
