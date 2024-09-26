@@ -4,7 +4,7 @@ import { db } from "../appwrite/databases.js";
 import Spinner from "../icons/Spinner.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 
-const NoteCard = ({ note, setNotes }) => {
+const NoteCard = ({ note }) => {
   const body = bodyParser(note.body);
   const [position, setPosition] = useState(JSON.parse(note.position));
   const colors = JSON.parse(note.colors);
@@ -30,7 +30,7 @@ const NoteCard = ({ note, setNotes }) => {
       document.addEventListener("mouseup", mouseUp);
     }
   };
-  
+
   const mouseMove = (e) => {
     const mouseMoveDir = {
       x: mouseStartPosition.x - e.clientX,
@@ -93,7 +93,7 @@ const NoteCard = ({ note, setNotes }) => {
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
-        <DeleteButton noteId={note.$id} setNotes={setNotes} />
+        <DeleteButton noteId={note.$id} />
 
         {saving && (
           <div className="card-saving">
