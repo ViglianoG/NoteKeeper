@@ -12,7 +12,7 @@ NoteKeeper is a user-friendly web application designed for efficient note-taking
 
 ## 🛠️ Technologies Used
 - **React** for the front-end.
-- **Firebase** for cloud storage and authentication.
+- **Appwrite** for cloud storage.
 - **JavaScript** for interactivity.
 
 ## 🚧 Getting Started
