@@ -4,6 +4,8 @@ import { db } from "../appwrite/databases.js";
 import Spinner from "../icons/Spinner.jsx";
 import DeleteButton from "./DeleteButton.jsx";
 import { NoteContext } from "../context/NoteContext.jsx";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NoteCard = ({ note }) => {
   const body = bodyParser(note.body);
@@ -77,6 +79,8 @@ const NoteCard = ({ note }) => {
 
     keyUpTimer.current = setTimeout(() => {
       saveData("body", textAreaRef.current.value);
+      const notify = () => toast.success("Note Saved!");
+      notify();
     }, 2000);
   };
 
